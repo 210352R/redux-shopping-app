@@ -1,7 +1,9 @@
+import Header from "./containers/Header";
+
 function App() {
   return (
     <div className="App">
-      <h1>React App</h1>
+      <Header />
     </div>
   );
 }
