@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectedProduct,
   removeSelectedProduct,
+  addToCart,
 } from "../redux/actions/productActions";
 
 const ProductDetails = () => {
@@ -23,7 +24,7 @@ const ProductDetails = () => {
 
   const addToCartHandler = (product) => {
     console.log("Add to cart", product, "--- Adding to Cart ---- ");
-    useDispatch(product);
+    dispatch(addToCart(product));
   };
 
   useEffect(() => {
