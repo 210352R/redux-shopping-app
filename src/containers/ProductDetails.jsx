@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   selectedProduct,
   removeSelectedProduct,
@@ -11,6 +12,8 @@ import {
 const ProductDetails = () => {
   const { productId } = useParams();
   let product = useSelector((state) => state.product);
+  let cart = useSelector((state) => state.cart);
+
   const { image, title, price, category, description } = product;
   const dispatch = useDispatch();
   const fetchProductDetail = async (id) => {
@@ -24,8 +27,11 @@ const ProductDetails = () => {
 
   const addToCartHandler = (product) => {
     console.log("Add to cart", product, "--- Adding to Cart ---- ");
-    dispatch(addToCart(product));
+    dispatch(addToCart(title));
   };
+
+  console.log("Cart Details :::::::::: ");
+  console.log(cart.carts);
 
   useEffect(() => {
     if (productId && productId !== "") fetchProductDetail(productId);
@@ -57,6 +63,14 @@ const ProductDetails = () => {
                     <button onClick={() => addToCartHandler(product)}>
                       <i className="cart plus icon"></i>
                       Add to Cart
+                    </button>
+                  </div>
+                </div>
+
+                <div className="ui vertical animated button" tabIndex="0">
+                  <div>
+                    <button>
+                      <Link to={`/cart`}>Shop Now</Link>
                     </button>
                   </div>
                 </div>

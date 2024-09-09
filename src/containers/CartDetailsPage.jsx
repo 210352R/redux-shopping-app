@@ -3,7 +3,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function CartDetailsPage() {
-  let cart = useSelector((state) => state.cart); // get cart from redux store
+  console.log("Cart Details Page :::::::::: ");
+  let cart = useSelector((state) => state.cart.carts); // get cart from redux store
   console.log("Cart Details :::::::::: ");
   console.log(cart);
 
