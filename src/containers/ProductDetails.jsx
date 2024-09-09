@@ -6,6 +6,7 @@ import {
   selectedProduct,
   removeSelectedProduct,
 } from "../redux/actions/productActions";
+
 const ProductDetails = () => {
   const { productId } = useParams();
   let product = useSelector((state) => state.product);
@@ -18,6 +19,11 @@ const ProductDetails = () => {
         console.log("Err: ", err);
       });
     dispatch(selectedProduct(response.data));
+  };
+
+  const addToCartHandler = (product) => {
+    console.log("Add to cart", product, "--- Adding to Cart ---- ");
+    useDispatch(product);
   };
 
   useEffect(() => {
@@ -46,10 +52,12 @@ const ProductDetails = () => {
                 <h3 className="ui brown block header">{category}</h3>
                 <p>{description}</p>
                 <div className="ui vertical animated button" tabIndex="0">
-                  <div className="hidden content">
-                    <i className="shop icon"></i>
+                  <div>
+                    <button onClick={() => addToCartHandler(product)}>
+                      <i className="cart plus icon"></i>
+                      Add to Cart
+                    </button>
                   </div>
-                  <div className="visible content">Add to Cart</div>
                 </div>
               </div>
             </div>
